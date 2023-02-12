@@ -1,0 +1,566 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<gdml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="gdml.xsd">
+  <define>
+    <constant name="PI" value="1.*pi"/>
+    <constant name="sedH" value="300"/>
+	<constant name="waterH" value="180.8"/>
+	<position name="center" x="0" y="0" z="0"/>
+	<position name="DetCapPos" x="0" y="0" z="480" unit="mm" />
+  <position name="TankCapPos" x="0" y="0" z="450.5" unit="mm" />
+  <position name="TankBotPos" x="0" y="0" z="-450.5" unit="mm" />
+  </define>
+<materials>
+  <isotope N="1" Z="1" name="H1">
+      <atom unit="g/mole" value="1.0078250322"/>
+    </isotope>
+  <isotope N="2" Z="1" name="H2">
+      <atom unit="g/mole" value="2.0141017781"/>
+    </isotope>
+  <isotope N="12" Z="6" name="C12">
+      <atom unit="g/mole" value="12.00"/>
+    </isotope>
+  <isotope N="13" Z="6" name="C13">
+      <atom unit="g/mole" value="13.003354835"/>
+    </isotope>
+  <isotope N="14" Z="7" name="N14">
+      <atom unit="g/mole" value="14.003074004"/>
+    </isotope>
+  <isotope N="15" Z="7" name="N15">
+      <atom unit="g/mole" value="15.000108899"/>
+    </isotope>
+  <isotope N="16" Z="8" name="O16">
+      <atom unit="g/mole" value="15.99491462"/>
+    </isotope>
+  <isotope N="17" Z="8" name="O17">
+      <atom unit="g/mole" value="16.999131757"/>
+    </isotope>
+  <isotope N="18" Z="8" name="O18">
+      <atom unit="g/mole" value="17.999159613"/>
+    </isotope>
+  <isotope N="24" Z="12" name="Mg24">
+      <atom unit="g/mole" value="23.9850417"/>
+    </isotope>
+  <isotope N="25" Z="12" name="Mg25">
+      <atom unit="g/mole" value="24.985837"/>
+    </isotope>
+  <isotope N="26" Z="12" name="Mg26">
+      <atom unit="g/mole" value="25.982593"/>
+    </isotope>
+  <isotope N="27" Z="13" name="Al">
+      <atom unit="g/mole" value="26.9815385"/>
+    </isotope>
+  <isotope N="28" Z="14" name="Si28">
+      <atom unit="g/mole" value="27.976926535"/>
+    </isotope>
+  <isotope N="29" Z="14" name="Si29">
+      <atom unit="g/mole" value="28.976494665"/>
+    </isotope>
+  <isotope N="30" Z="14" name="Si30">
+      <atom unit="g/mole" value="29.97377001"/>
+    </isotope>
+  <isotope N="31" Z="15" name="P">
+      <atom unit="g/mole" value="30.973761998"/>
+    </isotope>
+  <isotope N="32" Z="16" name="S32">
+      <atom unit="g/mole" value="31.972071174"/>
+    </isotope>
+  <isotope N="33" Z="16" name="S33">
+      <atom unit="g/mole" value="32.97145891"/>
+    </isotope>
+  <isotope N="34" Z="16" name="S34">
+      <atom unit="g/mole" value="33.967867"/>
+    </isotope>
+  <isotope N="36" Z="16" name="S36">
+      <atom unit="g/mole" value="35.967081"/>
+    </isotope>
+  <isotope N="36" Z="18" name="Ar36">
+      <atom unit="g/mole" value="35.96754552"/>
+    </isotope>
+  <isotope N="38" Z="18" name="Ar38">
+      <atom unit="g/mole" value="37.9627325"/>
+    </isotope>
+  <isotope N="40" Z="18" name="Ar40">
+      <atom unit="g/mole" value="39.9623837"/>
+    </isotope>
+  <isotope N="50" Z="24" name="Cr50">
+      <atom unit="g/mole" value="49.9460464"/>
+    </isotope>
+  <isotope N="52" Z="24" name="Cr52">
+      <atom unit="g/mole" value="51.9405098"/>
+    </isotope>
+  <isotope N="53" Z="24" name="Cr53">
+      <atom unit="g/mole" value="52.9406513"/>
+    </isotope>
+  <isotope N="54" Z="24" name="Cr54">
+      <atom unit="g/mole" value="53.9388825"/>
+    </isotope>
+  <isotope N="55" Z="25" name="Mn">
+      <atom unit="g/mole" value="54.938"/>
+    </isotope>
+  <isotope N="54" Z="26" name="Fe54">
+      <atom unit="g/mole" value="53.9396127"/>
+    </isotope>
+  <isotope N="56" Z="26" name="Fe56">
+      <atom unit="g/mole" value="55.9349393"/>
+    </isotope>
+  <isotope N="57" Z="26" name="Fe57">
+      <atom unit="g/mole" value="56.9353958"/>
+    </isotope>
+  <isotope N="58" Z="26" name="Fe58">
+      <atom unit="g/mole" value="57.9332773"/>
+    </isotope>
+  <isotope N="58" Z="28" name="Ni58">
+      <atom unit="g/mole" value="57.9353462"/>
+    </isotope>
+  <isotope N="60" Z="28" name="Ni60">
+      <atom unit="g/mole" value="59.9307884"/>
+    </isotope>
+  <isotope N="61" Z="28" name="Ni61">
+      <atom unit="g/mole" value="60.9310579"/>
+    </isotope>
+  <isotope N="62" Z="28" name="Ni62">
+      <atom unit="g/mole" value="61.9283461"/>
+    </isotope>
+  <isotope N="64" Z="28" name="Ni64">
+      <atom unit="g/mole" value="63.9279679"/>
+    </isotope>
+  <isotope N="63" Z="29" name="Cu63">
+      <atom unit="g/mole" value="62.9295989"/>
+    </isotope>
+  <isotope N="65" Z="29" name="Cu65">
+      <atom unit="g/mole" value="64.9277929"/>
+    </isotope>
+  <isotope N="64" Z="30" name="Zn64">
+      <atom unit="g/mole" value="63.9291448"/>
+    </isotope>
+  <isotope N="66" Z="30" name="Zn66">
+      <atom unit="g/mole" value="65.9260347"/>
+    </isotope>
+  <isotope N="67" Z="30" name="Zn67">
+      <atom unit="g/mole" value="66.9271291"/>
+    </isotope>
+  <isotope N="68" Z="30" name="Zn68">
+      <atom unit="g/mole" value="67.9248459"/>
+    </isotope>
+  <isotope N="70" Z="30" name="Zn70">
+      <atom unit="g/mole" value="69.925325"/>
+    </isotope>
+  <isotope N="107" Z="47" name="Ag107">
+      <atom unit="g/mole" value="106.90509"/>
+    </isotope>
+  <isotope N="109" Z="47" name="Ag109">
+      <atom unit="g/mole" value="108.90476"/>
+    </isotope>
+  <isotope N="106" Z="48" name="Cd106">
+      <atom unit="g/mole" value="105.906462"/>
+    </isotope>
+  <isotope N="108" Z="48" name="Cd108">
+      <atom unit="g/mole" value="107.904176"/>
+    </isotope>
+  <isotope N="110" Z="48" name="Cd110">
+      <atom unit="g/mole" value="109.903005"/>
+    </isotope>
+  <isotope N="111" Z="48" name="Cd111">
+      <atom unit="g/mole" value="110.904182"/>
+    </isotope>
+  <isotope N="112" Z="48" name="Cd112">
+      <atom unit="g/mole" value="111.902757"/>
+    </isotope>
+  <isotope N="113" Z="48" name="Cd113">
+      <atom unit="g/mole" value="112.904400"/>
+    </isotope>
+  <isotope N="114" Z="48" name="Cd114">
+      <atom unit="g/mole" value="113.903357"/>
+    </isotope>
+  <isotope N="116" Z="48" name="Cd116">
+      <atom unit="g/mole" value="115.904755"/>
+    </isotope>
+  <isotope N="46" Z="22" name="Ti46">
+      <atom unit="g/mole" value="45.9526294"/>
+    </isotope>
+  <isotope N="47" Z="22" name="Ti47">
+      <atom unit="g/mole" value="46.9517640"/>
+    </isotope>
+  <isotope N="48" Z="22" name="Ti48">
+      <atom unit="g/mole" value="47.9479473"/>
+    </isotope>
+  <isotope N="49" Z="22" name="Ti49">
+      <atom unit="g/mole" value="48.9478711"/>
+    </isotope>
+  <isotope N="50" Z="22" name="Ti50">
+      <atom unit="g/mole" value="49.9447921"/>
+    </isotope>
+  <isotope N="234" Z="92" name="U234">
+      <atom unit="g/mole" value="234.049934617"/>
+    </isotope>
+  <element name="el_U234">
+      <fraction n="1" ref="U234"/>
+    </element>
+  <isotope N="235" Z="92" name="U235">
+      <atom unit="g/mole" value="235.050148013"/>
+    </isotope>
+  <element name="el_U235">
+      <fraction n="1" ref="U235"/>
+    </element>
+  <isotope N="236" Z="92" name="U236">
+      <atom unit="g/mole" value="236.050361409"/>
+    </isotope>
+  <element name="el_U236">
+      <fraction n="1" ref="U236"/>
+    </element>
+  <isotope N="238" Z="92" name="U238">
+      <atom unit="g/mole" value="238.0507882"/>
+    </isotope>
+  <element name="el_U238">
+      <fraction n="1" ref="U238"/>
+    </element>
+  <element name="H">
+      <fraction n="0.999885" ref="H1"/>
+      <fraction n="0.000115" ref="H2"/>
+    </element>
+  <element name="C">
+      <fraction n="0.9893" ref="C12"/>
+      <fraction n="0.0107" ref="C13"/>
+    </element>
+  <element name="N">
+      <fraction n="0.99636" ref="N14"/>
+      <fraction n="0.00364" ref="N15"/>
+    </element>
+  <element name="O">
+      <fraction n="0.99757" ref="O16"/>
+      <fraction n="0.00205" ref="O17"/>
+      <fraction n="0.00038" ref="O18"/>
+    </element>
+  <element name="Mg">
+      <fraction n="0.7899" ref="Mg24"/>
+      <fraction n="0.1101" ref="Mg25"/>
+      <fraction n="0.1" ref="Mg26"/>
+    </element>
+  <element name="el_Si">
+      <fraction n="0.92223" ref="Si28"/>
+      <fraction n="0.04685" ref="Si29"/>
+      <fraction n="0.03092" ref="Si30"/>
+    </element>
+  <element name="S">
+      <fraction n="0.9499" ref="S32"/>
+      <fraction n="0.0425" ref="S33"/>
+      <fraction n="0.0075" ref="S34"/>
+      <fraction n="0.0001" ref="S36"/>
+    </element>
+  <element name="Ar">
+      <fraction n="0.0034" ref="Ar36"/>
+      <fraction n="0.0006" ref="Ar38"/>
+      <fraction n="0.996" ref="Ar40"/>
+    </element>
+  <element name="Cr">
+      <fraction n="0.0434" ref="Cr50"/>
+	  <fraction n="0.838" ref="Cr52"/>
+      <fraction n="0.0950" ref="Cr53"/>
+      <fraction n="0.0236" ref="Cr54"/>
+    </element>
+  <element name="Fe">
+      <fraction n="0.0584" ref="Fe54"/>
+	  <fraction n="0.9176" ref="Fe56"/>
+      <fraction n="0.0212" ref="Fe57"/>
+      <fraction n="0.0028" ref="Fe58"/>
+    </element>
+  <element name="Ni">
+      <fraction n="0.68077" ref="Ni58"/>
+	  <fraction n="0.26223" ref="Ni60"/>
+      <fraction n="0.01140" ref="Ni61"/>
+      <fraction n="0.03634" ref="Ni62"/>
+      <fraction n="0.00926" ref="Ni64"/>
+    </element>
+  <element name="Cu">
+      <fraction n="0.6917" ref="Cu63"/>
+	  <fraction n="0.3083" ref="Cu65"/>
+    </element>
+  <element name="Zn">
+      <fraction n="0.4863" ref="Zn64"/>
+	  <fraction n="0.2790" ref="Zn66"/>
+	  <fraction n="0.0410" ref="Zn67"/>
+	  <fraction n="0.1875" ref="Zn68"/>
+	  <fraction n="0.0062" ref="Zn70"/>
+    </element>
+  <element name="el_Ag">
+		<fraction n="0.5184" ref="Ag107"/>
+		<fraction n="0.4816" ref="Ag109"/>
+    </element>
+  <element name="Cd">
+      <fraction n="0.0126" ref="Cd106"/>
+	  <fraction n="0.0089" ref="Cd108"/>
+	  <fraction n="0.1249" ref="Cd110"/>
+	  <fraction n="0.1280" ref="Cd111"/>
+	  <fraction n="0.2412" ref="Cd112"/>
+	  <fraction n="0.1222" ref="Cd113"/>
+	  <fraction n="0.2873" ref="Cd114"/>
+	  <fraction n="0.0749" ref="Cd116"/>
+    </element>
+  <element name="Ti">
+      <fraction n="0.0825" ref="Ti46"/>
+	  <fraction n="0.0744" ref="Ti47"/>
+	  <fraction n="0.7372" ref="Ti48"/>
+	  <fraction n="0.0541" ref="Ti49"/>
+	  <fraction n="0.0518" ref="Ti50"/>
+    </element>
+  <material name="SSteel_Z2_CN_1810">
+    <D unit="g/cm3" value="7.9"/>
+	<fraction n="0.0003" ref="C"/>
+	<fraction n="0.01" ref="el_Si"/>
+	<fraction n="0.0004" ref="P"/>
+	<fraction n="0.0003" ref="S"/>
+	<fraction n="0.18" ref="Cr"/>
+	<fraction n="0.02" ref="Mn"/>
+	<fraction n="0.10" ref="Ni"/>
+	<fraction n="0.689" ref="Fe"/>
+    </material>
+  <material name="Steel_A42">
+      <D unit="g/cm3" value="7.85"/>
+	<fraction n="0.0025" ref="C"/>
+	<fraction n="0.00009" ref="N"/>
+	<fraction n="0.00062" ref="P"/>
+	<fraction n="0.00062" ref="S"/>
+	<fraction n="0.99617" ref="Fe"/>
+    </material>
+  <material name="AG3_Aluminium">
+      <D unit="g/cm3" value="2.66"/>
+	<fraction n="0.035" ref="Mg"/>
+	<fraction n="0.004" ref="el_Si"/>
+	<fraction n="0.002" ref="Ti"/>
+	<fraction n="0.004" ref="Cr"/>
+	<fraction n="0.005" ref="Mn"/>
+	<fraction n="0.005" ref="Fe"/>
+	<fraction n="0.001" ref="Cu"/>
+	<fraction n="0.002" ref="Zn"/>
+	<fraction n="0.942" ref="Al"/>
+    </material>
+  <material name="Cadmium">
+      <D unit="g/cm3" value="8.65"/>
+	<fraction n="1.00" ref="Cd"/>
+    </material>
+  <material name="Polyethylene">
+      <D unit="g/cm3" value="0.92"/>
+	<fraction n="0.142" ref="H"/>
+	<fraction n="0.858" ref="C"/>
+    </material>
+  <material name="G4_AIR">
+      <D unit="g/cm3" value="0.00120479"/>
+    <fraction n="0.75" ref="N"/>
+    <fraction n="0.24" ref="O"/>
+    <fraction n="0.01" ref="Ar"/>
+    </material>
+  <material name="UranylNitrateSolution">
+      <D unit="g/cm3" value="1.15624"/>
+  <fraction n="0.089680" ref="H"/>
+	<fraction n="0.030764" ref="N"/>
+	<fraction n="0.817926" ref="O"/>
+	<fraction n="0.000361" ref="el_U234"/>
+	<fraction n="0.057076" ref="el_U235"/>
+	<fraction n="0.000156" ref="el_U236"/>
+	<fraction n="0.004037" ref="el_U238"/>
+    </material>
+	
+  <material name="Bakelite">
+      <D unit="g/cm3" value="1.4"/>
+    <fraction n="0.057444" ref="H"/>
+	<fraction n="0.774589" ref="C"/>
+	<fraction n="0.167968" ref="O"/>
+    </material>
+	
+  <material name="D16">
+      <D unit="g/cm3" value="2.78"/>
+    <fraction n="0.004" ref="Fe"/>
+	<fraction n="0.004" ref="el_Si"/>
+	<fraction n="0.006" ref="Mn"/>
+	<fraction n="0.0005" ref="Ni"/>
+	<fraction n="0.0005" ref="Ti"/>
+	<fraction n="0.93" ref="Al"/>
+	<fraction n="0.04" ref="Cu"/>
+	<fraction n="0.013" ref="Mg"/>
+	<fraction n="0.002" ref="Zn"/>
+    </material>
+	
+  <material name="Tekaform">
+      <D unit="g/cm3" value="1.41"/>
+    <fraction n="0.067" ref="H"/>
+	<fraction n="0.4" ref="C"/>
+	<fraction n="0.533" ref="O"/>
+    </material>
+	
+	<material name="Ag">
+      <D unit="g/cm3" value="10.501"/>
+    <fraction n="1.0" ref="el_Ag"/>
+    </material>
+	
+	<material name="Si">
+      <D unit="g/cm3" value="2.329"/>
+    <fraction n="1.0" ref="el_Si"/>
+    </material>
+	
+	<material name="UraniumSediment">
+      <D unit="g/cm3" value="1.41931"/>
+		<fraction n="0.025834" ref="el_U235"/>
+		<fraction n="0.371608" ref="el_U238"/>
+		<fraction n="0.061009" ref="H"/>
+		<fraction n="0.541549" ref="O"/>
+    </material>
+	
+	<material name="H2O">
+      <D unit="g/cm3" value="0.998207"/>
+		<fraction n="0.111894" ref="H"/>
+		<fraction n="0.888106" ref="O"/>
+    </material>
+	
+	<material name="ConcretePort">
+      <D unit="g/cm3" value="2.3"/>
+		<fraction n="0.010000" ref="H"/>
+		<fraction n="0.001000" ref="C"/>
+		<fraction n="0.529107" ref="O"/>
+		<fraction n="0.016000" ref="Na"/>
+		<fraction n="0.002000" ref="Mg"/>
+		<fraction n="0.033872" ref="Al"/>
+		<fraction n="0.337021" ref="Si"/>
+		<fraction n="0.013000" ref="K"/>
+		<fraction n="0.044000" ref="Ca"/>
+		<fraction n="0.014000" ref="Fe"/>
+    </material>
+	
+  </materials>
+<solids>
+    <box name="WorldBox" x="7.0" y="7.0" z="7.0" lunit="m"/>
+	
+	<!-- Стенка бака (толщина 1 мм) Центрирована-->
+	<tube name="TankWallSol" rmin="32.5" rmax="32.6" startphi="0.0" deltaphi="360.0" aunit="deg" z="90.0" lunit="cm"/>
+	<!-- крышка бака (толщина 1 мм) -->
+	<!-- Смещения для верхней и нижней крышек dz = zбак/2+zкрышки/2 = 30.05 , нижней -30.05 -->
+	<tube name="TankCapSol" rmin="0" rmax="32.6" startphi="0.0" deltaphi="360.0" aunit="deg" z="0.1" lunit="cm"/>
+	
+	<!-- Собираю бак из крышек и стенки -->
+	<multiUnion name="TankSol" >
+		<multiUnionNode name="wall">
+			<solid ref="TankWallSol" />
+		</multiUnionNode>
+		<multiUnionNode name="topCap">
+			<solid ref="TankCapSol" />
+			<positionref ref="TankCapPos" />
+		</multiUnionNode>
+		<multiUnionNode name="botCap">
+			<solid ref="TankCapSol" />
+      <positionref ref="TankBotPos" />
+		</multiUnionNode>
+	</multiUnion>
+	
+	<tube name="AirTubeSol" rmin="32.6" rmax="33.0" startphi="0.0" deltaphi="360.0" aunit="deg" z="90" lunit="cm"/>
+	<tube name="AirCapSol" rmin="0" rmax="33.0" startphi="0.0" deltaphi="360.0" aunit="deg" z="1" lunit="cm"/>
+	
+	<!-- осадок урана -->
+	<!-- С учетом центрирования бака его смещение по оси z должно составлять dz=-(zбак/2 - zосадок/2) т.е. -20.895 см -->
+	<tube name="SedimentSol" rmin="0" rmax="325" startphi="0.0" deltaphi="360.0" aunit="deg" z="sedH" lunit="mm"/>
+	
+	<!-- жидкость -->
+	<!-- чтобы жидкость "встала" на осадок необходимо смещение dz = -(zбак/2 - zвода/2) + zосадок = 7.075 -->
+	<tube name="WaterSol" rmin="0" rmax="325" startphi="0.0" deltaphi="360.0" aunit="deg" z="waterH" lunit="mm"/>
+	
+	<!-- Бетонный пол -->
+	<!-- Сделаю большую толщину в 1м. смещение dz = -30 - 0.1 - 100/2 = -80.1 см -->
+	<box name="FloorSol" x="6.5" y="6.5" z="1.0" lunit="m"/>
+	
+	<!-- Детектирующая зона в виде купола над баком -->
+	<!-- Стенка на расстоянии 50 см от бака 22.6 + 50 = 72.6     Высота 64 см, т.е на 4 см выше бака-->
+	<tube name="DetWallSol" rmin="82.6" rmax="84.6" startphi="0.0" deltaphi="360.0" aunit="deg" z="94.0" lunit="cm"/>
+	<!-- "Крышка" детектора-->
+	<tube name="DetCapSol" rmin="0" rmax="84.6" startphi="0.0" deltaphi="360.0" aunit="deg" z="2.0" lunit="cm"/>
+	
+	<!-- Собираем детектор -->
+	<union name="DetSol">
+		<first  ref="DetWallSol" />
+		<second ref="DetCapSol" />
+		
+		<positionref ref="DetCapPos" />
+	</union>
+	
+</solids>
+  
+<structure>
+
+	<volume name="TankLV">
+    <solidref ref="TankSol"/>
+		<materialref ref="Steel_A42"/>
+  </volume>
+	
+	<volume name="AirTubeLV">
+        <solidref ref="AirTubeSol"/>
+		<materialref ref="G4_AIR"/>
+    </volume>
+	
+	<volume name="AirCapLV">
+        <solidref ref="AirCapSol"/>
+		<materialref ref="G4_AIR"/>
+    </volume>
+	
+	<volume name="SedimentLV">
+        <solidref ref="SedimentSol"/>
+		<materialref ref="UraniumSediment"/>
+    </volume>
+	
+	<volume name="WaterLV">
+        <solidref ref="WaterSol"/>
+		<materialref ref="H2O"/>
+    </volume>
+	
+	<volume name="FloorLV">
+        <solidref ref="FloorSol"/>
+		<materialref ref="ConcretePort"/>
+    </volume>
+	
+	<volume name="DetLV">
+        <solidref ref="DetSol"/>
+		<materialref ref="G4_AIR"/>
+    </volume>
+	
+ <!-- МИР -->
+    <volume name="worldVOL">
+      <solidref ref="WorldBox"/>
+      <materialref ref="G4_AIR"/>
+	  
+    <physvol name="TankPV">
+        <volumeref ref="TankLV"/>
+      <positionref ref="center"/>
+      </physvol>
+	  
+    <physvol name="AirTubePV">
+        <volumeref ref="AirTubeLV"/>
+      <positionref ref="center"/>
+      </physvol>
+	  
+    <physvol name="AirCapPV">
+        <volumeref ref="AirCapLV"/>
+      <position x="0" y="0" z="456" lunit="mm" />
+      </physvol>
+	  
+	<physvol name="SedimentPV">
+        <volumeref ref="SedimentLV"/>
+      <position x="0" y="0" z="-450+sedH/2" lunit="mm" />
+      </physvol>
+	  
+	<physvol name="WaterPV">
+        <volumeref ref="WaterLV"/>
+      <position x="0" y="0" z="-450+sedH+waterH/2" lunit="mm" />
+      </physvol>
+	  
+	<physvol name="FloorPV">
+        <volumeref ref="FloorLV"/>
+      <position x="0" y="0" z="-450-1-500" lunit="mm" />
+      </physvol>
+	  
+	<physvol name="DetPV">
+        <volumeref ref="DetLV"/>
+      <position x="0" y="0" z="-450-1+940/2" lunit="mm" />
+      </physvol>
+	  
+    </volume>
+  </structure>
+<setup name="Default" version="1.0">
+    <world ref="worldVOL"/>
+  </setup>
+</gdml>

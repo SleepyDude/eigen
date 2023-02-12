@@ -1,0 +1,12 @@
+
+/run/initialize
+
+/control/verbose 0
+/run/verbose 0
+/event/verbose 0
+/tracking/verbose 0
+/run/printProgress 100000
+
+#/process/inactivate nFission
+
+/run/beamOn 4000000
