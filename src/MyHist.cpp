@@ -28,6 +28,7 @@
 #elif __linux__
     // linux
     #include <bits/stdc++.h>
+    #include <sys/stat.h>
 #elif __unix__ // all unices not caught above
     // Unix
 #elif defined(_POSIX_VERSION)

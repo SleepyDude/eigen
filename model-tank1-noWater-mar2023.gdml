@@ -1,0 +1,108 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE gdml [
+<!ENTITY materials SYSTEM "materials.xml"> ]>
+<gdml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="schema/gdml.xsd">
+  <define>
+    <constant name="PI" value="1.*pi"/>
+    <constant name="sedH" value="300"/>
+	  <constant name="waterH" value="180.8"/>
+
+    <quantity name="exampleQuantity" type="density" value="1" unit="g/cm3" />
+
+	  <position name="center" x="0" y="0" z="0"/>
+	  <position name="DetCapPos" x="0" y="0" z="480"/>
+  </define>
+
+&materials;
+
+<!-- SOLIDS -->
+<solids>
+    <box name="WorldBox" x="7.0" y="7.0" z="7.0" lunit="m"/>
+	
+	<!-- Стенка бака (толщина 1 мм) Центрирована-->
+	<tube name="TankWallSol" rmin="32.5" rmax="32.6" startphi="0.0" deltaphi="360.0" aunit="deg" z="90.0" lunit="cm"/>
+	<!-- крышка бака (толщина 1 мм) -->
+	<!-- Смещения для верхней и нижней крышек dz = zбак/2+zкрышки/2 = 30.05 , нижней -30.05 -->
+	<tube name="TankCapSol" rmin="0" rmax="32.6" startphi="0.0" deltaphi="360.0" aunit="deg" z="0.1" lunit="cm"/>
+	
+	<!-- Собираю бак из крышек и стенки -->
+	<multiUnion name="TankSol" >
+		<multiUnionNode name="wall">
+			<solid ref="TankWallSol" />
+		</multiUnionNode>
+		<multiUnionNode name="topCap">
+			<solid ref="TankCapSol" />
+			<position name="topCapPos" x="0" y="0" z="450.5" unit="mm" /> 
+		</multiUnionNode>
+		<multiUnionNode name="botCap">
+			<solid ref="TankCapSol" />
+			<position name="botCapPos" x="0" y="0" z="-450.5" unit="mm" /> 
+		</multiUnionNode>
+	</multiUnion>
+	
+	<!-- осадок урана -->
+	<tube name="SedimentSol" rmin="0" rmax="325" startphi="0.0" deltaphi="360.0" aunit="deg" z="sedH" lunit="mm"/>
+	
+	<!-- жидкость -->
+	<!-- чтобы жидкость "встала" на осадок необходимо смещение dz = -(zбак/2 - zвода/2) + zосадок = 7.075 -->
+	<tube name="WaterSol" rmin="0" rmax="325" startphi="0.0" deltaphi="360.0" aunit="deg" z="waterH" lunit="mm"/>
+	
+	<!-- Бетонный пол -->
+	<!-- Сделаю большую толщину в 1м. смещение dz = -30 - 0.1 - 100/2 = -80.1 см -->
+	<box name="FloorSol" x="6.5" y="6.5" z="1.0" lunit="m"/>
+	
+</solids>
+<!-- STRUCTURE -->
+<structure>
+
+	<volume name="TankLV">
+    <solidref ref="TankSol"/>
+	  <materialref ref="Steel_A42"/>
+  </volume>
+	
+	<volume name="SedimentLV">
+        <solidref ref="SedimentSol"/>
+		<materialref ref="UraniumSediment"/>
+    </volume>
+	
+	<volume name="WaterLV">
+        <solidref ref="WaterSol"/>
+		<materialref ref="G4_AIR"/>
+    </volume>
+	
+	<volume name="FloorLV">
+        <solidref ref="FloorSol"/>
+		<materialref ref="ConcretePort"/>
+    </volume>
+	
+ <!-- МИР -->
+    <volume name="worldVOL">
+      <solidref ref="WorldBox"/>
+      <materialref ref="G4_AIR"/>
+	  
+    <physvol name="TankPV">
+        <volumeref ref="TankLV"/>
+      <positionref ref="center"/>
+      </physvol>
+	  
+	<physvol name="SedimentPV">
+        <volumeref ref="SedimentLV"/>
+      <position x="0" y="0" z="-450+sedH/2" lunit="mm" />
+      </physvol>
+	  
+	<physvol name="WaterPV">
+        <volumeref ref="WaterLV"/>
+      <position x="0" y="0" z="-450+sedH+waterH/2" lunit="mm" />
+      </physvol>
+	  
+	<physvol name="FloorPV">
+        <volumeref ref="FloorLV"/>
+      <position x="0" y="0" z="-450-1-500" lunit="mm" />
+      </physvol>
+	  
+    </volume>
+  </structure>
+<setup name="Default" version="1.0">
+    <world ref="worldVOL"/>
+  </setup>
+</gdml>

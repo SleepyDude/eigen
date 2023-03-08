@@ -49,15 +49,16 @@ public:
   static Analysis* GetAnalysis();
 
   void Book();
-  void BookSpectrum(std::string aname);
+  void BookSpectrumNeutron(std::string aname);
   void BookSpectrumGamma(std::string aname);
+
   void BookAngles(std::string aname);
   void BookSpatial(std::string aname);
   void BookAxialTank1(std::string aname);
   void BookRadialTank1(std::string aname);
   void BookAxialSilene(std::string aname);
   void BookRadialSilene(std::string aname);
-  void BookNtuples();
+  void BookNtuple();
   void EndOfRun();
 
   void BookAxialRadial(std::string aname);
@@ -82,7 +83,7 @@ public:
   void FillU235F(G4String name, G4double aenergy, G4double ax, G4double aweight);
   void FillSpatial(G4String name, G4double x, G4double y, G4double z);
 
-  void Fillntuple(G4ThreeVector apos, G4ThreeVector adir, G4double alen, G4double aE);
+  void Fillntuple(G4int atype, G4ThreeVector apos, G4ThreeVector adir, G4double alen, G4double aE);
 
   void AddXSFile(G4String filename, XSFileData * xsData);
 
@@ -91,6 +92,17 @@ public:
 private:
   Analysis();
   DISALLOW_COPY_AND_ASSIGN(Analysis);
+
+  void BookHist1D(
+      const G4String &name,
+      const G4String &title,
+      G4int nbins, 
+      G4double xmin,
+      G4double xmax,
+      const G4String &unitName = "none",
+      const G4String &fcnName = "none",
+      const G4String &binSchemeName = "linear"
+  );
 
   // Geant4 analysis manager Histograms handlers
   std::unordered_map<std::string, int> m_histHandlers;
@@ -103,6 +115,7 @@ private:
 //  G4int fincident_hist;
 //  G4int ffluence_hist;
   G4int m_ntuple;
+  // std::unordered_map<std::string, int> m_ntuples;
 
   static G4ThreadLocal G4int fincidentFlag;
 };

@@ -28,6 +28,7 @@ public:
 //    void createMessenger();
   
 private:
+    G4String m_folderName;
     void fillAxialRadial(G4String folder, int n=1);
     double lookForX(const std::vector<double> &xvec, const std::vector<double> &yvec);
 

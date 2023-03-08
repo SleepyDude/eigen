@@ -27,6 +27,7 @@
 #elif __linux__
     // linux
     #include <bits/stdc++.h>
+    #include <sys/stat.h>
 #elif __unix__ // all unices not caught above
     // Unix
 #elif defined(_POSIX_VERSION)
@@ -198,7 +199,7 @@ void My::Hist2D::writeInFile(std::string filename, std::string folder) {
     if (!folder.empty()) {
 #if defined(_WIN32)
         int errcode = mkdir(folder.c_str());
-#else
+#elif !defined(_WIN32)
         int errcode = mkdir(folder.c_str(), 755);
 #endif
         if(!errcode || errno == 17) { // 17 - folder already exists, all right

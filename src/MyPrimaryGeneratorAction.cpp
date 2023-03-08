@@ -15,6 +15,7 @@
 
 #include "G4AutoDelete.hh"
 #include "Analysis.h"
+#include "StateManager.h"
 
 #ifndef M_PI
     #define M_PI 3.14159265358979323846
@@ -66,7 +67,12 @@ MyPrimaryGeneratorAction::MyPrimaryGeneratorAction()
 //        m_a = m_a0 + m_a1 * startEnergy + m_a2 * startEnergy * startEnergy;
 //    }
 
-    fillAxialRadial("Tank1-april", 60);
+    G4cout << "In PrimaryGenerator Constructor" << G4endl;
+    StateManager* sm = StateManager::GetStateManager();
+
+    std::string srcfolder = sm->getFilename("srcfolder");
+    fillAxialRadial(srcfolder, 60);
+
 //    fillAxialRadial("Tank2-april", 60);
 //    fillAxialRadial("Tank1noWater-april", 60);
 //    fillAxialRadial("Silene-april", 60);
@@ -167,7 +173,7 @@ void MyPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
     // Основывается на m_a с предыдущей итерации и вычисляется m_a для следующей
 
     G4double K = 1. + 1./(8 * m_a);
-    G4double L = (K + sqrt(K*K - 1))/m_a;
+    G4double L = (K + sqrt(K*K - 1)) / m_a;
     G4double M = m_a * L - 1;
     G4double x;
     G4double y;
@@ -182,8 +188,8 @@ void MyPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
     m_particleGun->SetParticleEnergy(energy);
 
     // Записываем нейтроны источника с целью дебага в нтупл. Вроде все 10000 историй нормально записались
-//    auto myana = Analysis::GetAnalysis();
-//    myana->Fillntuple(G4ThreeVector(x_crd, y_crd, z_crd), G4ThreeVector(xCos, yCos, zCos), 1.0, energy / MeV);
+   auto myana = Analysis::GetAnalysis();
+   myana->Fillntuple(0, G4ThreeVector(x_crd, y_crd, z_crd), G4ThreeVector(xCos, yCos, zCos), 1.0, energy / MeV);
 
     // Создаем начальное событие, запускаем первичную частицу
     m_particleGun->GeneratePrimaryVertex(anEvent);

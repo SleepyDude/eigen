@@ -24,7 +24,7 @@ MyEventAction::MyEventAction()
  : G4UserEventAction()
 {
     getCount()++;
-    m_count = getCount();
+    m_count = getCount();   
     G4cout << "Event action creating " << m_count << G4endl;
 }
 

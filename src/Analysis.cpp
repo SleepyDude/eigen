@@ -41,14 +41,12 @@
 #include "G4RootAnalysisManager.hh"
 using G4AnalysisManager = G4RootAnalysisManager;
 
-
 G4ThreadLocal G4int Analysis::fincidentFlag = false;
 G4ThreadLocal Analysis* the_analysis = 0;
 
 namespace { G4Mutex BookHistMutex = G4MUTEX_INITIALIZER; }
 namespace { G4Mutex XSFileReadMutex = G4MUTEX_INITIALIZER; }
 namespace { G4Mutex GammaBinsFileReadMutex = G4MUTEX_INITIALIZER; }
-
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 Analysis*
@@ -71,15 +69,16 @@ void
 Analysis::Book()
 {
     G4cout << "Analysis::Book start" << G4endl;
-    BookNtuples();
+    BookNtuple();
     G4cout << "Analysis::Book finished " << G4endl;
 }
 
-void Analysis::BookNtuples() {
+void Analysis::BookNtuple() {
     G4AnalysisManager* mgr = G4AnalysisManager::Instance();
     mgr->SetNtupleMerging(true);
 
-    m_ntuple = mgr->CreateNtuple("GammaLeak", "Leak Gamma From Tank 1");
+    m_ntuple = mgr->CreateNtuple("Universal Ntuple", "ntuple");
+    mgr->CreateNtupleIColumn(m_ntuple, "type");
     mgr->CreateNtupleDColumn(m_ntuple, "xPos");
     mgr->CreateNtupleDColumn(m_ntuple, "yPos");
     mgr->CreateNtupleDColumn(m_ntuple, "zPos");
@@ -93,21 +92,46 @@ void Analysis::BookNtuples() {
     G4cout << "Analysis::BookNtuple with " << m_ntuple << " id" << G4endl;
 }
 
-void
-Analysis::BookSpectrum(std::string aname) {
-    G4cout << "Analysis::BookSpectrum for " << aname << " starts" << G4endl;
+// Регистрация новой гистограммы
+// `name` should be unique
+void Analysis::BookHist1D(
+    const G4String &name,
+    const G4String &title,
+    G4int nbins, 
+    G4double xmin,
+    G4double xmax,
+    const G4String &unitName,
+    const G4String &fcnName,
+    const G4String &binSchemeName
+) {
+    G4cout << "[DEBUG] Analysis::BookHist1D()" << G4endl;
+    // creating main histogram
     G4AnalysisManager* mgr = G4AnalysisManager::Instance();
-    int handler = mgr->CreateH1(aname, "Fluence distribution on " + aname + " detector", \
-                                      500, 1.E-12*MeV, 14*MeV, "MeV", "none", "log");
-    m_histHandlers[aname] = handler;
-
-    // Установка вспомогательной гистограммы
-    m_supHists[aname] = new My::Hist(500, 1.E-12*MeV, 14*MeV, "supHist", "supFolder", My::logSc);
-    m_supHists[aname]->setPrintFlag(false);
-
-    G4cout << "Analysis::BookSpectrum for " << aname << " finished" << G4endl;
+    m_histHandlers[name] = mgr->CreateH1(name, title, nbins, xmin, xmax,
+        unitName, fcnName, binSchemeName);
+    // creating sub histogram
+    My::ScaleType binScale = My::ScaleType::linSc;
+    if (binSchemeName != "linear")
+        binScale = My::ScaleType::logSc;
+    m_supHists[name] = new My::Hist(nbins, xmin, xmax, "supHist", "supFolder", binScale);
+    m_supHists[name]->setPrintFlag(false); // гистограмма нужна в рантайме
 }
 
+// Book spectrum for neutrons
+void
+Analysis::BookSpectrumNeutron(std::string aname) {
+    BookHist1D(aname, "Neutron spectrum for " + aname, \
+        500, 1.E-12*MeV, 14*MeV, "MeV", "none", "log");
+}
+
+// Book spectrum for gamma
+// void
+// Analysis::BookSpectrumGamma(std::string aname) {
+//     BookHist1D(aname, "Gamma spectrum for " + aname, \
+//         500, 1.E-12*MeV, 14*MeV, "MeV", "none", "log");
+// }
+
+// Book spectrum for gamma
 void
 Analysis::BookSpectrumGamma(std::string aname) {
     G4cout << "Analysis::BookSpectrum Gamma for " << aname << " starts" << G4endl;
@@ -401,17 +425,18 @@ Analysis::LoadToMainHist() {
     }
 }
 
-void Analysis::Fillntuple(G4ThreeVector apos, G4ThreeVector adir, G4double alen, G4double aE) {
+void Analysis::Fillntuple(G4int atype, G4ThreeVector apos, G4ThreeVector adir, G4double alen, G4double aE) {
      G4AnalysisManager* mgr = G4AnalysisManager::Instance();
 
-     mgr->FillNtupleDColumn(m_ntuple, 0, apos.x());
-     mgr->FillNtupleDColumn(m_ntuple, 1, apos.y());
-     mgr->FillNtupleDColumn(m_ntuple, 2, apos.z());
-     mgr->FillNtupleDColumn(m_ntuple, 3, adir.x());
-     mgr->FillNtupleDColumn(m_ntuple, 4, adir.y());
-     mgr->FillNtupleDColumn(m_ntuple, 5, adir.z());
-     mgr->FillNtupleDColumn(m_ntuple, 6, alen);
-     mgr->FillNtupleDColumn(m_ntuple, 7, aE);
+     mgr->FillNtupleIColumn(m_ntuple, 0, atype);
+     mgr->FillNtupleDColumn(m_ntuple, 1, apos.x());
+     mgr->FillNtupleDColumn(m_ntuple, 2, apos.y());
+     mgr->FillNtupleDColumn(m_ntuple, 3, apos.z());
+     mgr->FillNtupleDColumn(m_ntuple, 4, adir.x());
+     mgr->FillNtupleDColumn(m_ntuple, 5, adir.y());
+     mgr->FillNtupleDColumn(m_ntuple, 6, adir.z());
+     mgr->FillNtupleDColumn(m_ntuple, 7, alen);
+     mgr->FillNtupleDColumn(m_ntuple, 8, aE);
      mgr->AddNtupleRow();
 }
 

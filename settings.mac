@@ -1,0 +1,4 @@
+# Source distribution folder
+SET srcfolder Tank1noWater-april
+# gdml model filename
+SET model model-tank1-noWater-mar2023.gdml

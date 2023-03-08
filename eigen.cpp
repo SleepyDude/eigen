@@ -1,25 +1,21 @@
-#include <limits>
-
-#include "MyActionInitialization.h"
-#include "MyConstruction.h"
-
 #include "G4MTRunManager.hh"
 #include "G4UImanager.hh"
 
 #include "QGSP_BERT_HP.hh"
 
 #define G4UI_USE
+#define G4MULTITHREADED1
 
 #ifdef G4UI_USE //Если используется интерфейс пользователя
     #include "G4VisExecutive.hh"//Визуализация
     #include "G4UIExecutive.hh"//Выбор соответствуещего интерфейса пользователя
 #endif
 
-#define G4MULTITHREADED1
+#include "MyActionInitialization.h"
+#include "MyConstruction.h"
 
 int main(int argc,char** argv)
 {
-
     CLHEP::HepRandom::setTheEngine(new CLHEP::RanecuEngine);
     CLHEP::HepRandom::setTheSeed(time(NULL));//Устанавливаем зерно для генератора
 
@@ -41,7 +37,7 @@ int main(int argc,char** argv)
 
     runManager->SetUserInitialization(physList);
     // action
-    auto actionInitialization = new MyActionInitialization(detConstruction);
+    auto actionInitialization = new MyActionInitialization();
     runManager->SetUserInitialization(actionInitialization);
     runManager->Initialize();
  #ifdef G4UI_USE

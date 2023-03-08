@@ -1,23 +1,21 @@
 #include "MyRunActionMaster.h"
-
 #include "G4Run.hh"
-#include "G4RunManager.hh"
-#include "G4UnitsTable.hh"
-#include "G4SystemOfUnits.hh"
-#include "G4SDManager.hh"
-#include "G4LogicalVolumeStore.hh"
-
 #include "Analysis.h"
 
-// #include "MyHistManager.h"
+#include <chrono>
+#include <ctime>
+
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 MyRunActionMaster::MyRunActionMaster()
 {
-    // Book analysis in ctor
+    G4cout << "In MyRunActionMaster Constructor" << G4endl;
     Analysis* myana = Analysis::GetAnalysis();
-    G4cout<<"Book analysis " << G4endl;
+    G4cout << "[DEBUG] Book analysis in MyRunActionMaster::MyRunActionMaster()" << G4endl;
+    auto start_calculation = std::chrono::system_clock::now();
+    std::time_t start_time = std::chrono::system_clock::to_time_t(start_calculation);
+    G4cout << "[TIME START] " << std::ctime(&start_time) << G4endl;
     myana->Book();
 }
 
@@ -31,7 +29,7 @@ MyRunActionMaster::~MyRunActionMaster()
 
 void MyRunActionMaster::BeginOfRunAction(const G4Run* /*run*/)
 {
-    G4cout << "RunActionMaster::BeginOfRunAction" << G4endl;
+    G4cout << "[DEBUG] RunActionMaster::BeginOfRunAction" << G4endl;
 
     Analysis* myana = Analysis::GetAnalysis();
     myana->Clear();
@@ -57,6 +55,9 @@ void MyRunActionMaster::EndOfRunAction(const G4Run* /*run*/)
     G4cout << "===================================================" << G4endl;
     G4cout << "End EndOfRunAction for master thread "               << G4endl;
     G4cout << "===================================================" << G4endl;
+    auto end_calculation = std::chrono::system_clock::now();
+    std::time_t end_time = std::chrono::system_clock::to_time_t(end_calculation);
+    G4cout << "[TIME END] " << std::ctime(&end_time) << G4endl;
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......

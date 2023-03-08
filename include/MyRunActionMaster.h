@@ -2,7 +2,6 @@
 #define MyRunActionMaster_h 1
 
 #include "G4UserRunAction.hh"
-#include "globals.hh"
 #include <vector>
 #include <unordered_map>
 #include <G4GenericMessenger.hh>

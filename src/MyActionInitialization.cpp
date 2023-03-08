@@ -4,16 +4,13 @@
 #include "MyRunActionMaster.h"
 #include "MyEventAction.h"
 #include "MySteppingAction.h"
-#include "MyConstruction.h"
-
 
 /// Обязательный класс, который должен быть объявлен в проекте Geant4
 /// Имя класса может быть другим, и он долже наследоваться от
 /// класса G4VUserActionInitialization
 /// Конструктор
-MyActionInitialization::MyActionInitialization(MyConstruction* detConstruction)
-   : G4VUserActionInitialization(),
-     m_detConstruction(detConstruction)
+MyActionInitialization::MyActionInitialization()
+   : G4VUserActionInitialization()
 {}
 
 //Деструктор
@@ -23,7 +20,6 @@ MyActionInitialization::~MyActionInitialization()
 void MyActionInitialization::BuildForMaster() const {
     SetUserAction(new MyRunActionMaster);
 }
-
 
 void MyActionInitialization::Build() const
 {
@@ -35,5 +31,4 @@ void MyActionInitialization::Build() const
         SetUserAction(new MyRunAction);
     else
         SetUserAction(new MyRunActionMaster);
-
 }

@@ -1,1 +1,9 @@
 *.user
+build
+.vscode
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+compile_commands.json
+.cache
+CMakeFiles

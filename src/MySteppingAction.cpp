@@ -39,7 +39,7 @@ void MySteppingAction::UserSteppingAction(const G4Step* step)
         auto preSP = step->GetPreStepPoint();
         auto volume = preSP->GetTouchableHandle()->GetVolume();
         auto volName = volume->GetName();
-        if (volName == "TankPV") {
+        if (volName == "TankPV") { // Стенка корпуса источника
             auto myana = Analysis::GetAnalysis();
 
             G4ThreeVector crd = preSP->GetPosition();
@@ -55,7 +55,7 @@ void MySteppingAction::UserSteppingAction(const G4Step* step)
             // без записи ./eigen run1.mac  300.27s user 1.33s system 309% cpu 1:37.53 total (чет не так) | 0 строк
             // еще раз без ./eigen run1.mac  330.57s user 1.57s system 331% cpu 1:40.33 total | 0 строк
             // с ./eigen run1.mac  305.51s user 1.38s system 308% cpu 1:39.32 total / 4210 строк
-            myana->Fillntuple(crd, dir, len, E);
+            myana->Fillntuple(1, crd, dir, len, E);
         }
 
     } else if (part_name == "neutron") {
